@@ -20,7 +20,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 # wandb configuration
 export WANDB_MODE=online
 # export WANDB_API_KEY=17dc79f602cb38784f4e5f10986e3a3355f54315
-export WANDB_API_KEY=c2fe654fd0527d4fad92e03cdc1e3f59b9a20595
+# export WANDB_API_KEY=c2fe654fd0527d4fad92e03cdc1e3f59b9a20595
 export WANDB_BASE_URL=https://api.wandb.ai
 
 export PYTHONPATH=/home/yu/FinTable-R1/verl:$PYTHONPATH
