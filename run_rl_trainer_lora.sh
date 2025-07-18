@@ -3,7 +3,7 @@
 set -x
 
 # Hugging Face access token
-export HF_HUB_TOKEN="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"
+export HF_HUB_TOKEN="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"
 export HUGGINGFACE_HUB_TOKEN="$HF_HUB_TOKEN"
 
 # Use virtual environment

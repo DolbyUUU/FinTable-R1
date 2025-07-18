@@ -1,0 +1,78 @@
+{
+  "os":  "Linux-5.15.0-139-generic-x86_64-with-glibc2.35",
+  "python":  "CPython 3.10.12",
+  "startedAt":  "2025-07-18T09:46:16.879447Z",
+  "args":  [
+    "--node-ip-address=10.6.72.84",
+    "--node-manager-port=39961",
+    "--object-store-name=/tmp/ray/session_2025-07-18_17-44-41_726295_3444491/sockets/plasma_store",
+    "--raylet-name=/tmp/ray/session_2025-07-18_17-44-41_726295_3444491/sockets/raylet",
+    "--redis-address=None",
+    "--metrics-agent-port=60146",
+    "--logging-rotate-bytes=536870912",
+    "--logging-rotate-backup-count=5",
+    "--runtime-env-agent-port=60817",
+    "--gcs-address=10.6.72.84:62335",
+    "--session-name=session_2025-07-18_17-44-41_726295_3444491",
+    "--temp-dir=/tmp/ray",
+    "--webui=127.0.0.1:8265",
+    "--cluster-id=68974c029dfc7db3005120cb81dbe7544d23daf103dd1e3abb830c15",
+    "--startup-token=144",
+    "--worker-launch-time-ms=1752831886818",
+    "--node-id=07ab0de782e409a2f568bcd4000ed5aa4296ef6503a8fdf517707916",
+    "--runtime-env-hash=-1624044036",
+    "--enable-resource-isolation=false"
+  ],
+  "program":  "/home/yu/.local/lib/python3.10/site-packages/ray/_private/workers/default_worker.py",
+  "git":  {
+    "remote":  "https://github.com/DolbyUUU/FinTable-R1.git",
+    "commit":  "8e1683b99721a78dfa328e7153ef46023b507cec"
+  },
+  "root":  "/home/yu/YU-WANG/FinTable-R1",
+  "host":  "super",
+  "executable":  "/usr/bin/python3",
+  "cpu_count":  72,
+  "cpu_count_logical":  144,
+  "gpu":  "NVIDIA GeForce RTX 4090",
+  "gpu_count":  4,
+  "disk":  {
+    "/":  {
+      "total":  "980666998784",
+      "used":  "499803414528"
+    }
+  },
+  "memory":  {
+    "total":  "1081762263040"
+  },
+  "cpu":  {
+    "count":  72,
+    "countLogical":  144
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    },
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    },
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    },
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    }
+  ],
+  "cudaVersion":  "12.2"
+}

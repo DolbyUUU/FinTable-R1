@@ -1,0 +1,54 @@
+test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': False, 'validate': True}
+validation generation end
+[2025-07-18 17:21:14,055 INFO] Loaded reward params: {'format_reward': 0.5, 'validity_reward': 0.5, 'correctness_reward': 1.0, 'inverse_frequency': {'enabled': True, 'normalize': True, 'window_size': None, 'max_scale': 5.0}, 'novelty_entropy': {'enabled': True, 'eta': 0.5}, 'novelty_count': {'enabled': True, 'eta': 1.0}}
+INFO:2025-07-18 17:21:14,055:Loaded reward params: {'format_reward': 0.5, 'validity_reward': 0.5, 'correctness_reward': 1.0, 'inverse_frequency': {'enabled': True, 'normalize': True, 'window_size': None, 'max_scale': 5.0}, 'novelty_entropy': {'enabled': True, 'eta': 0.5}, 'novelty_count': {'enabled': True, 'eta': 1.0}}
+>>> CONFIG: {'format_reward': 0.5, 'validity_reward': 0.5, 'correctness_reward': 1.0, 'inverse_frequency': {'enabled': True, 'normalize': True, 'window_size': None, 'max_scale': 5.0}, 'novelty_entropy': {'enabled': True, 'eta': 0.5}, 'novelty_count': {'enabled': True, 'eta': 1.0}}
+=== compute_score start ===
+solution_str[:200]="<think>Installment is a measure of the borrower's ability to repay the loan. A high installment (177.15) suggests the borrower has a strong ability to repay. Loan Purpose (other) and Loan Application "
+ground_truth={'label_idx': 0, 'label_str': 'good'}
+
+================================================================================
+============================ Processing New Sample =============================
+================================================================================
+
+[Full Prompt]
+[Prompt not provided]
+--------------------------------------------------------------------------------
+
+[Model Output]
+<think>Installment is a measure of the borrower's ability to repay the loan. A high installment (177.15) suggests the borrower has a strong ability to repay. Loan Purpose (other) and Loan Application Type (Individual) do not provide specific information about the borrower's creditworthiness. Interest Rate (16.55%) is relatively low, indicating a low risk of default. Last Payment Amount (176.97) is close to the loan amount, suggesting the borrower is making timely payments. Loan Amount (5000.0) is a significant amount, indicating a high risk of default. Revolving Balance (2333.0) is high, suggesting the borrower may have difficulty managing their debt. Delinquency In 2 years (0.0) indicates no delinquencies, which is good. Inquiries In 6 Months (1.0) suggests the borrower has a history of inquiries, which is neutral. Mortgage Accounts (0.0) and Grade (D) indicate the borrower has no mortgage and is in a low credit grade, which is a high risk. Open Accounts (14.0) and Revolving Utilization Rate (77.8%) are high, suggesting the borrower may have difficulty managing their debt. Total Accounts (27.0) and Fico Range Low (695.0) and Fico Range High (699.0) indicate the borrower has a high risk of default. Annual Income (21000.0) is a significant amount, indicating a high risk of default. Address State (NY) and Employment Length (2 years) do not provide specific information about the borrower's creditworthiness. Home Ownership (RENT) and Verification Status (Source Verified) do not provide specific information about the borrower's creditworthiness.</think>
+
+<answer>(1)</answer>
+--------------------------------------------------------------------------------
+
+[Ground Truth]
+  label_str: 'good'
+--------------------------------------------------------------------------------
+
+[Structure Validation]
+  <think>: count=1, position=0
+  </think>: count=1, position=1566
+  <answer>: count=1, position=1576
+  </answer>: count=1, position=1587
+  No extraneous content between </think> and <answer>
+  No extraneous content after </answer>
+  Tag sequence validation: PASS
+[validate_response_structure] result = True
+[Format] ok_fmt=True, fmt_score=0.50
+[extract_answer] raw matches = ['(1)']
+[extract_answer] extracted answer = '(1)'
+[Validity] ans='(1)', ans_lc='(1)'
+Answer Validity: INVALID → 0.00
+[Correctness] gold_label='good'
+Answer Correctness: WRONG (pred='(1)', gold='good') → 0.00
+
+--------------------------------------------------------------------------------
+------------------------------ Final Score (orig) ------------------------------
+  Format Reward:      0.50
+  Validity Reward:    0.00
+  Correctness Reward: 0.00
+  Total Reward:       0.50
+================================================================================
+
+[InvFreq] before scale: cor_base=0.00, label=good
+[InvFreq] after scale: cor_scaled=0.00

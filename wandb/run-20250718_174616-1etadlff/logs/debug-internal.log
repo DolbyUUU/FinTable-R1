@@ -1,0 +1,7 @@
+{"time":"2025-07-18T17:46:16.880304695+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/home/yu/YU-WANG/FinTable-R1/wandb/run-20250718_174616-1etadlff/logs/debug-core.log"}
+{"time":"2025-07-18T17:46:17.010905062+08:00","level":"INFO","msg":"created new stream","id":"1etadlff"}
+{"time":"2025-07-18T17:46:17.010972484+08:00","level":"INFO","msg":"stream: started","id":"1etadlff"}
+{"time":"2025-07-18T17:46:17.010995309+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"1etadlff"}
+{"time":"2025-07-18T17:46:17.011138408+08:00","level":"INFO","msg":"handler: started","stream_id":"1etadlff"}
+{"time":"2025-07-18T17:46:17.011229325+08:00","level":"INFO","msg":"sender: started","stream_id":"1etadlff"}
+{"time":"2025-07-18T17:46:17.661048813+08:00","level":"INFO","msg":"Starting system monitor"}
