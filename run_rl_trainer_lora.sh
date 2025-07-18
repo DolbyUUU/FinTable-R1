@@ -3,9 +3,8 @@
 set -x
 
 # Hugging Face access token
-export HF_HUB_TOKEN="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"
+export HF_HUB_TOKEN="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"
 export HUGGINGFACE_HUB_TOKEN="$HF_HUB_TOKEN"
-# export HF_HOME="/home/data/base_models"
 
 # Use virtual environment
 source /home/yu/venv-verl/bin/activate
@@ -23,7 +22,7 @@ export WANDB_MODE=online
 export WANDB_API_KEY=c2fe654fd0527d4fad92e03cdc1e3f59b9a20595
 export WANDB_BASE_URL=https://api.wandb.ai
 
-export PYTHONPATH=/home/yu/FinTable-R1/verl:$PYTHONPATH
+export PYTHONPATH=/home/yu/YU-WANG/FinTable-R1/verl:$PYTHONPATH
 
 # Save the current working directory
 CURRENT_DIR=$(pwd)
@@ -33,7 +32,7 @@ cd ./data_preprocess_finben || { echo "Failed to change directory to ./data_prep
 
 # Run data preprocessing
 echo "Running data preprocessing..."
-python3 finben_data_preprocessing.py --local_dir /home/yu/FinTable-R1/data_preprocess_finben
+python3 finben_data_preprocessing.py --local_dir /home/yu/YU-WANG/FinTable-R1/data_preprocess_finben
 
 # Return to the original directory
 cd "$CURRENT_DIR" || { echo "Failed to return to $CURRENT_DIR"; exit 1; }

@@ -20,23 +20,31 @@ from configs import DATASET_CONFIGS
 from datasets import load_dataset, DatasetDict
 from verl.utils.hdfs_io import makedirs, copy
 
+# if True, use 'query' when building user prompt, else use 'text'
+USE_QUERY = False
 
 def make_prefix(example: Dict, system_instruction: str):
     """
-    Build the system+user prompt for a single example.
-    Returns a list of role/content dicts.
+    Build the system + user prompt for a single example.
+    Returns a list of {'role': ..., 'content': ...} dicts.
     """
-    # Explicitly enumerate choices
+    # Enumerate choices explicitly
     choices_str = ", ".join(f"({i}) {c}" for i, c in enumerate(example["choices"]))
-    # user_content = (
-    #     f"{example['query']}\n"
-    #     f"Options: {choices_str}\n\n"
-    #     f"Data:\n{example['text']}"
-    # )
-    user_content = (
-        f"{example['text']}\n\n"
-        f"Options: {choices_str}"
-    )
+
+    if USE_QUERY:
+        # Use 'query' first, then show 'text' as data
+        user_content = (
+            f"{example['query']}\n"
+            f"Options: {choices_str}\n\n"
+            f"Data:\n{example['text']}"
+        )
+    else:
+        # Use only the 'text' field
+        user_content = (
+            f"{example['text']}\n\n"
+            f"Options: {choices_str}"
+        )
+
     return [
         {"role": "system", "content": system_instruction},
         {"role": "user",   "content": user_content},
@@ -45,7 +53,7 @@ def make_prefix(example: Dict, system_instruction: str):
 
 def make_map_fn(split_name: str, cfg: Dict[str, str]):
     """
-    Returns a function for Dataset.map to convert examples to VERL schema.
+    Returns a function for Dataset.map to convert examples to the VERL schema.
     Uses cfg["ability"] if present, else defaults to 'credit_scoring'.
     """
     def map_fn(example, idx):
@@ -71,8 +79,12 @@ def make_map_fn(split_name: str, cfg: Dict[str, str]):
 
 
 def main():
-    logging.basicConfig(level=logging.INFO,
-                        format="[%(asctime)s %(levelname)s] %(message)s")
+    global USE_QUERY
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="[%(asctime)s %(levelname)s] %(message)s"
+    )
 
     parser = argparse.ArgumentParser(
         description="Generalized FinBen data preprocessing for VERL."
@@ -86,17 +98,27 @@ def main():
     )
     parser.add_argument(
         "--local_dir", type=str, required=True,
-        help="Root dir to write subdirs for each dataset."
+        help="Root directory to write subdirectories for each dataset."
     )
     parser.add_argument(
         "--hdfs_dir", type=str, default=None,
-        help="Optional HDFS dir to copy all processed data."
+        help="Optional HDFS directory to copy all processed data."
     )
     parser.add_argument(
         "--num_proc", type=int, default=4,
         help="Number of parallel processes for dataset.map()."
     )
+    parser.add_argument(
+        "--use_query", action="store_true",
+        help="If set, use the 'query' column (plus Data:text) for user_content; "
+             "otherwise use the 'text' column only."
+    )
+
     args = parser.parse_args()
+
+    # Set the global flag based on command-line argument
+    USE_QUERY = args.use_query
+    logging.info(f"use_query = {USE_QUERY}")
 
     selected = args.datasets or list(DATASET_CONFIGS.keys())
     logging.info(f"Datasets to process: {selected}")
@@ -116,7 +138,8 @@ def main():
         out_dir = os.path.join(root_local, key)
         os.makedirs(out_dir, exist_ok=True)
 
-        for alias in ("valid", "val"): # Naming inconsistency in FinBen datasets
+        # Alias 'valid' or 'val' splits to 'validation' if needed
+        for alias in ("valid", "val"):
             if alias in ds and "validation" not in ds:
                 ds["validation"] = ds.pop(alias)
 
